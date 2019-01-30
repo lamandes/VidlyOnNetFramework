@@ -1,0 +1,35 @@
+﻿
+@model VidlyOnNetFramework.Models.CustomerViewModel
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer</h2>
+@if (Model.CustomerList.Count == 0)
+{
+    <text>There are no customers atm. </text>
+}
+else
+{
+
+    <table class="table table-­bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Discount Rate</th>
+                <th>Discount Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.CustomerList)
+            {
+                <tr>
+                    <th scope="row">@Html.ActionLink(customer.Name, String.Format("Edit/{0}", customer.ID), "Customer")</th>
+                    <td>@customer.MembershipType.DiscountRate%</td>
+                    <td>@customer.MembershipType.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
