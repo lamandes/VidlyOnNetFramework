@@ -4,24 +4,25 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using VidlyOnNetFramework.Models;
 
-namespace VidlyOnNetFramework.Models
+namespace VidlyOnNetFramework.Dtos
 {
-    public class Customer
+    public class CustomerDto
     {
         public int ID { get; set; }
+
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
-        public bool IsSubscribedToNewsletter { get; set;}
-        //Navigation Type
-        public MembershipType MembershipType { get; set; }
+
+        public bool IsSubscribedToNewsletter { get; set; }
+        
         //Foreign Key
-        [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
-        //[Check18YrsOld]
-        [Column(TypeName="Date")]
-        [Display(Name ="Date Of Birth")]
+
+        //[Check18YrsOld] 
         public DateTime? BirthDate { get; set; }
+
     }
 }

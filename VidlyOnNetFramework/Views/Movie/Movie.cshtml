@@ -5,6 +5,7 @@
 }
 
 <h2>Movies</h2>
+<a class="btn btn-primary" href="@Url.Action("New", "Movie")" role="button">New Movie</a>
 @if (Model.MovieList.Count == 0)
 {
     <text>Sorry! No movies available now. </text>
@@ -21,7 +22,7 @@ else
         <tbody>
             @foreach (var movie in Model.MovieList)
             {
-                <tr><th scope="row">@Html.ActionLink(movie.Name, String.Format("Details/{0}", movie.ID), "Movie")</th></tr>
+                <tr><th scope="row">@Html.ActionLink(movie.Name, String.Format("Edit/{0}", movie.ID), "Movie")</th></tr>
             }
         </tbody>
     </table>

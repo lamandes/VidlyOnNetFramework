@@ -4,37 +4,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Customer</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Save", "Customer"))
 {
+    @Html.ValidationSummary(true, "Please edit following errors before resubmit", new { @class = "alert alert-dismissible alert-warning" }, "div")
+
+
+
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.BirthDate)
-        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
-        @*<select class="custom-select">
-                <option selected="">Membership Type</option>
-                @for(var i = 0; i < Model.MembershipTypes.Count(); i++)
-                {
-                    <option value=@i>@Model.MembershipTypes.ElementAt(i).Name</option>
-                }
-            </select>*@
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Customer.BirthDate)
+        @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.BirthDate)
+    </div>
+    
+        <div class="form-group">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter)
             Subscribe to News Letter?
         </label>
     </div>
 
-    //Hidden Id form post
+    @*//Hidden Id form post*@
     @Html.HiddenFor(m => m.Customer.ID);
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Submit</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

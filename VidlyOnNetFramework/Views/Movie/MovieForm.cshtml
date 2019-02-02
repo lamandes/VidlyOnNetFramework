@@ -1,0 +1,47 @@
+﻿@*
+    Class of creating new movie
+*@
+@model VidlyOnNetFramework.Models.NewMovieViewModel
+@{
+    ViewBag.Title = (Model.ID > 0) ? "Edit Movie" : "New Movie"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Save", "Movie"))
+{
+    @*
+        Name of movie
+    *@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ReleaseDate)
+        @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ReleaseDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GenreTypeId)        @*Get foreign key of genretype id*@
+        @Html.DropDownListFor(m => m.GenreTypeId, new SelectList(Model.GenreTypes, "Id", "TypeName"), "Select Movie Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GenreTypeId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumInStock)
+        @Html.TextBoxFor(m => m.NumInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.NumInStock)
+    </div>
+
+    @*//Hidden Id form post*@
+    @Html.HiddenFor(m => m.ID);
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
