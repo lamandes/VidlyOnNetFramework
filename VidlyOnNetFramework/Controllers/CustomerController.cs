@@ -95,15 +95,16 @@ namespace VidlyOnNetFramework.Controllers
 
         [Route("Customer")]
         // GET: Customer
-        public ActionResult Customer()
+        public ViewResult Customer()
         {
-            var customerList = _context.Customers.Include(c=> c.MembershipType).ToList();
+            //var customerList = _context.Customers.Include(c=> c.MembershipType).ToList();
 
-            var viewModel = new CustomerViewModel
-            {
-                CustomerList = customerList
-            };
-            return View(viewModel);
+            //var viewModel = new CustomerViewModel
+            //{
+            //    CustomerList = customerList
+            //};
+            //return View(viewModel);
+            return View();
         }
 
         

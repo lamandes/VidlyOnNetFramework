@@ -20,6 +20,7 @@ namespace VidlyOnNetFramework.Dtos
         
         //Foreign Key
         public byte MembershipTypeId { get; set; }
+        public MembershipTypeDto MembershipType { get; set; }
 
         //[Check18YrsOld] 
         public DateTime? BirthDate { get; set; }

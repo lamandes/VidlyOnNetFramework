@@ -83,5 +83,21 @@ namespace VidlyOnNetFramework.Controllers.Api
             existingMovie.ID = movieDto.ID;
             return Created(new Uri(Request.RequestUri + "/" + existingMovie.ID), movieDto);
         }
+
+        //PUT Update movie
+        [HttpDelete]
+        public void DeleteMovie(MovieDto movieDto)
+        {
+            //Get exisiting movie
+            var existingMovie = _context.Movies.SingleOrDefault(m => m.ID == movieDto.ID);
+            if (existingMovie == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            //Update existing movie with automap
+            _context.Movies.Remove(existingMovie);
+            _context.SaveChanges();
+        }
     }
 }
