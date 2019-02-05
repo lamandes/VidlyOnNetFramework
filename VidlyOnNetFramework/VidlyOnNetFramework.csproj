@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44335</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\GenreTypeDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -265,6 +266,14 @@
     <Compile Include="Migrations\201902011820045_ModiyMovieProperties.Designer.cs">
       <DependentUpon>201902011820045_ModiyMovieProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902051502315_SeedUsers.cs" />
+    <Compile Include="Migrations\201902051502315_SeedUsers.Designer.cs">
+      <DependentUpon>201902051502315_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902051538251_AddDrivingLicenseToApplicationUser.cs" />
+    <Compile Include="Migrations\201902051538251_AddDrivingLicenseToApplicationUser.Designer.cs">
+      <DependentUpon>201902051538251_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Check18YrsOld.cs" />
@@ -278,6 +287,7 @@
     <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\NewCustomerViewModel.cs" />
     <Compile Include="Models\NewMovieViewModel.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -621,6 +631,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Movie\MovieForm.cshtml" />
+    <Content Include="Views\Movie\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -676,6 +687,12 @@
     <EmbeddedResource Include="Migrations\201902011820045_ModiyMovieProperties.resx">
       <DependentUpon>201902011820045_ModiyMovieProperties.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051502315_SeedUsers.resx">
+      <DependentUpon>201902051502315_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902051538251_AddDrivingLicenseToApplicationUser.resx">
+      <DependentUpon>201902051538251_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -702,7 +719,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>6301</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6301/</IISUrl>
+          <IISUrl>https://localhost:44335/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

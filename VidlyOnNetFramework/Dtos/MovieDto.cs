@@ -13,6 +13,8 @@ namespace VidlyOnNetFramework.Dtos
         
         //Foreign Key for Genre type
         public byte GenreTypeId { get; set; }
+        public GenreTypeDto GenreType { get; set; }
+
         //Nullable and only show store as YYYY-MM-DD
         
         public DateTime? ReleaseDate { get; set; }

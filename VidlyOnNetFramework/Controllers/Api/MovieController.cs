@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 using VidlyOnNetFramework.Dtos;
 using VidlyOnNetFramework.Models;
 
@@ -28,7 +29,10 @@ namespace VidlyOnNetFramework.Controllers.Api
         //GET /api/Movie
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            return _context.Movies
+                .Include(m => m.GenreType)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
         }
 
         //GET /api/Movie/1
@@ -86,10 +90,11 @@ namespace VidlyOnNetFramework.Controllers.Api
 
         //PUT Update movie
         [HttpDelete]
-        public void DeleteMovie(MovieDto movieDto)
+        //public void DeleteMovie(MovieDto movieDto)
+        public void DeleteMovie(int id, Movie movie)
         {
             //Get exisiting movie
-            var existingMovie = _context.Movies.SingleOrDefault(m => m.ID == movieDto.ID);
+            var existingMovie = _context.Movies.SingleOrDefault(m => m.ID == id);
             if (existingMovie == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

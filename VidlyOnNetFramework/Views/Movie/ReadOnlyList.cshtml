@@ -1,0 +1,42 @@
+﻿@model VidlyOnNetFramework.Models.MovieViewModel
+@{
+    ViewBag.Title = "Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+<table class="table table-­bordered table-hover" id="movies">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var movieTable = $("#movies").DataTable(
+                {
+                    ajax: {
+                        url: "api/movie",
+                        dataSrc:""
+                    },
+                    columns: [
+                        {
+                            data: "name",
+                        },
+                        {
+                            data: "genreType.typeName"
+                        },
+                    ]
+                });
+        });
+
+    </script>
+}
+
+
+

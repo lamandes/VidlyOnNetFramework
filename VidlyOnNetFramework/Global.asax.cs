@@ -23,6 +23,7 @@ namespace VidlyOnNetFramework
                 cfg.CreateMap<Movie, MovieDto>();
                 cfg.CreateMap<MovieDto, Movie>();
                 cfg.CreateMap<MembershipType, MembershipTypeDto>();
+                cfg.CreateMap<GenreType, GenreTypeDto>();
             });
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();

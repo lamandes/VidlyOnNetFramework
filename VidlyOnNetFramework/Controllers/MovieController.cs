@@ -23,6 +23,18 @@ namespace VidlyOnNetFramework.Controllers
             _context.Dispose();
         }
 
+        [Route("Movie")]
+        // GET: Movie
+        public ActionResult Movie()
+        {
+            if (User.IsInRole(RoleName.CanManageMovie))
+            {
+                return View("Movie");
+            }
+            return View("ReadOnlyList");
+        }
+
+        [Authorize(Roles = RoleName.CanManageMovie)]
         // GET: Movie/New
         public ActionResult New()
         {
@@ -88,18 +100,7 @@ namespace VidlyOnNetFramework.Controllers
             }
         }
 
-        [Route("Movie")]
-        // GET: Movie
-        public ActionResult Movie()
-        {
-            //List<Movie>
-            var movieList = _context.Movies.Include(c=> c.GenreType).ToList();
-            var viewModel = new MovieViewModel
-            {
-                MovieList = movieList
-            };
-            return View(viewModel);
-        }
+        
 
         
     }
